@@ -1,0 +1,37 @@
+table.calendar {
+	background: #e1e0e0;
+	width: 90%;
+	/* box model hack */
+	voice-family: "\"}\"";
+	voice-family: inherit;
+	width: 100%;
+	}
+ 
+table.calendar th {
+	color: #666;
+	background: none;
+	padding: 3px;
+	font-size: 10px;
+	text-align: left;
+}
+ 
+table.calendar td {
+	background: #f0f0f0;
+	padding: 3px;
+	color: #ccc;
+	font-size: 9px;
+	vertical-align: top;
+}
+ 
+table.calendar td.with {
+	background: #fff;
+	color: #333;
+	border: 1px solid #000;
+	font-weight: bold;
+}
+ 
+table.calendar td.today {
+	background: #ffc;
+	color: #000;
+	border: 1px solid #fc6;
+}
