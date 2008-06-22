@@ -19,7 +19,7 @@ module Calendar
       :day_class => 'day',
       :abbrev => (0..2),
       :first_day_of_week => 0,
-      :accessible => false,
+      :accessible => true,
       :show_today => true,
       :previous_month_text => nil,
       :next_month_text => nil
@@ -37,7 +37,8 @@ module Calendar
       day_names.push(day_names.shift)
     end
 
-    cal = %(<table class="#{options[:table_class]}" border="0" cellspacing="0" cellpadding="0">)
+    cal = "<h2 class=\"calendar\">#{Date::MONTHNAMES[options[:month]]}</h2>"
+    cal << %(<table class="#{options[:table_class]}" border="0" cellpadding="0" cellspacing="1" width="100%">)
     cal << %(<thead><tr>)
     if options[:previous_month_text] or options[:next_month_text]
       cal << %(<th colspan="2">#{options[:previous_month_text]}</th>)
@@ -45,14 +46,14 @@ module Calendar
     else
       colspan=7
     end
-    cal << %(<th colspan="#{colspan}" class="#{options[:month_name_class]}">#{Date::MONTHNAMES[options[:month]]}</th>)
-    cal << %(<th colspan="2">#{options[:next_month_text]}</th>) if options[:next_month_text]
-    cal << %(</tr><tr class="#{options[:day_name_class]}">)
+    #cal << %(<th colspan="#{colspan}" class="#{options[:month_name_class]}">#{Date::MONTHNAMES[options[:month]]}</th>)
+    #cal << %(<th colspan="2">#{options[:next_month_text]}</th>) if options[:next_month_text]
+    #cal << %(</tr><tr class="#{options[:day_name_class]}">)
     day_names.each do |d|
       unless d[options[:abbrev]].eql? d
-        cal << "<th scope='col'><abbr title='#{d}'>#{d[options[:abbrev]]}</abbr></th>"
+        cal << "<th scope='col' width=\"14%\"><abbr title='#{d}'>#{d[options[:abbrev]]}</abbr></th>"
       else
-        cal << "<th scope='col'>#{d[options[:abbrev]]}</th>"
+        cal << "<th scope='col' width=\"14%\">#{d[options[:abbrev]]}</th>"
       end
     end
     cal << "</tr></thead><tbody><tr>"
@@ -72,6 +73,7 @@ module Calendar
       cell_attrs[:class] += " weekendDay" if [0, 6].include?(cur.wday) 
       cell_attrs[:class] += " today" if (cur == Date.today) and options[:show_today]  
       cell_attrs = cell_attrs.map {|k, v| %(#{k}="#{v}") }.join(" ")
+      cell_text = "<b>#{cell_text}</b> TODAY" if (cur == Date.today) and options[:show_today]
       cal << "<td #{cell_attrs}>#{cell_text}</td>"
       cal << "</tr><tr>" if cur.wday == last_weekday
     end
