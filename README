@@ -11,6 +11,10 @@ This plugin is an extension of Geoffrey Grosenbach's plugin, 'calender-helper'.
 
 Example
 =======
+In your application layout:
+
+<%= stylesheet_link_tag 'calendar/style' %>
+
 
 For a simple calendar view use:
 
