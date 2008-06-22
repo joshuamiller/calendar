@@ -1,13 +1,31 @@
 Calendar
 ========
 
-Introduction goes here.
+Calendar is a view helper to draw out a calendar.  Today is highlighted and you can pass a block of code to the calendar to
+add a special css class to those dates.
+
+It is loaded on app startup and the helper is available to all views.
+
+This plugin is an extension of Geoffrey Grosenbach's plugin, 'calender-helper'.
 
 
 Example
 =======
 
-Example goes here.
+For a simple calendar view use:
+
+	<%= calendar(:year => Date.today.year, :month => Date.today.month, :table_class => "calendar") %>
+
+To highlight an array of date use this:
+	The example is finding a list of upcoming milestones.  It finds the dates in the records array through map and returns
+	them telling the calendar to pass the class "with" to that td tag.
+	
+	<%= calendar(:year => Date.today.year, :month => Date.today.month, :table_class => "calendar") do |d| 
+			if @milestones.map(&:date).include?(d)
+				[d.mday, {:class => "with"}]
+			end
+		end %>
+	
 
 
 Copyright (c) 2008 Patrick Elder, released under the MIT license
