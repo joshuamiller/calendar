@@ -60,10 +60,14 @@ module Calendar
     beginning_of_week(first, first_weekday).upto(first - 1) do |d|
       cal << %(<td class="#{options[:other_month_class]})
       cal << " weekendDay" if weekend?(d)
-      if options[:accessible]
-        cal << %(">#{d.day}<span class="hidden"> #{Date::MONTHNAMES[d.month]}</span></td>)
+      if options[:display_other_month_dates]
+        if options[:accessible]
+          cal << %(">#{d.day}<span class="hidden"> #{Date::MONTHNAMES[d.month]}</span></td>)
+        else
+          cal << %(">#{d.day}</td>)
+        end
       else
-        cal << %(">#{d.day}</td>)
+        cal << %("></td)
       end
     end unless first.wday == first_weekday
     first.upto(last) do |cur|
@@ -87,7 +91,7 @@ module Calendar
           cal << %(">#{d.day}</td>)        
         end
       else
-        cal << %("></td>")
+        cal << %("></td>)
       end
     end unless last.wday == last_weekday
     cal << "</tr></tbody></table>"
