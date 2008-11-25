@@ -40,7 +40,8 @@ module Calendar
       day_names.push(day_names.shift)
     end
 
-    cal = "<h2 class=\"calendar\">#{Date::MONTHNAMES[options[:month]]} #{options[:year]}</h2>"
+    cal = "<div class=\"calendar\">"
+    cal << "<h2 class=\"calendar\">#{Date::MONTHNAMES[options[:month]]} #{options[:year]}</h2>"
     cal << %(<table class="#{options[:table_class]}" border="0" cellpadding="0" cellspacing="1" width="100%">)
     cal << %(<thead><tr>)
     if options[:previous_month_text] or options[:next_month_text]
@@ -94,7 +95,7 @@ module Calendar
         cal << %("></td>)
       end
     end unless last.wday == last_weekday
-    cal << "</tr></tbody></table>"
+    cal << "</tr></tbody></table></div>"
   end
   
   private
