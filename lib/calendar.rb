@@ -24,7 +24,8 @@ module Calendar
       :accessible => true,
       :show_today => true,
       :previous_month_text => nil,
-      :next_month_text => nil
+      :next_month_text => nil,
+      :display_other_month_dates => false
     }
     options = defaults.merge options
 
@@ -79,10 +80,14 @@ module Calendar
     (last + 1).upto(beginning_of_week(last + 7, first_weekday) - 1)  do |d|
       cal << %(<td class="#{options[:other_month_class]})
       cal << " weekendDay" if weekend?(d)
-      if options[:accessible]
-        cal << %(">#{d.day}<span class='hidden'> #{Date::MONTHNAMES[d.mon]}</span></td>)
+      if options[:display_other_month_dates]
+        if options[:accessible]
+          cal << %(">#{d.day}<span class='hidden'> #{Date::MONTHNAMES[d.mon]}</span></td>)
+        else
+          cal << %(">#{d.day}</td>)        
+        end
       else
-        cal << %(">#{d.day}</td>)        
+        cal << %("></td>")
       end
     end unless last.wday == last_weekday
     cal << "</tr></tbody></table>"
