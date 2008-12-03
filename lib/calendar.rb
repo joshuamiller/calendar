@@ -67,7 +67,7 @@ module Calendar
           cal << %(">#{d.day}</td>)
         end
       else
-        cal << %("></td)
+        cal << %("></td>)
       end
     end unless first.wday == first_weekday
     first.upto(last) do |cur|
