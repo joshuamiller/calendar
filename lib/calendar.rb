@@ -78,7 +78,7 @@ module Calendar
       cell_attrs[:class] += " weekendDay" if [0, 6].include?(cur.wday) 
       cell_attrs[:class] += " today" if (cur == Date.today) and options[:show_today]  
       cell_attrs = cell_attrs.map {|k, v| %(#{k}="#{v}") }.join(" ")
-      cell_text = "<b>#{cell_text}</b> TODAY" if (cur == Date.today) and options[:show_today]
+      cell_text = "<span class='today'>#{cell_text}</span> TODAY" if (cur == Date.today) and options[:show_today]
       cal << "<td #{cell_attrs}>#{cell_text}</td>"
       cal << "</tr><tr>" if cur.wday == last_weekday
     end
