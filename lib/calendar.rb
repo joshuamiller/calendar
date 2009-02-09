@@ -12,6 +12,7 @@ module Calendar
     block                        ||= Proc.new {|d| nil}
 
     defaults = {
+      :title => "<h2 class=\"calendar\">#{Date::MONTHNAMES[options[:month]]} #{options[:year]}</h2>"
       :table_class => 'calendar',
       :month_name_class => 'monthName',
       :other_month_class => 'dif_month',
@@ -41,7 +42,7 @@ module Calendar
     end
 
     cal = "<div class=\"calendar\">"
-    cal << "<h2 class=\"calendar\">#{Date::MONTHNAMES[options[:month]]} #{options[:year]}</h2>"
+    cal << options[:title]
     cal << %(<table class="#{options[:table_class]}" border="0" cellpadding="0" cellspacing="1" width="100%">)
     cal << %(<thead><tr>)
     if options[:previous_month_text] or options[:next_month_text]
