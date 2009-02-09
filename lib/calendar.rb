@@ -12,7 +12,7 @@ module Calendar
     block                        ||= Proc.new {|d| nil}
 
     defaults = {
-      :title => "<h2 class=\"calendar\">#{Date::MONTHNAMES[options[:month]]} #{options[:year]}</h2>"
+      :title => "<h2 class=\"calendar\">#{Date::MONTHNAMES[options[:month]]} #{options[:year]}</h2>",
       :table_class => 'calendar',
       :month_name_class => 'monthName',
       :other_month_class => 'dif_month',
